@@ -2,10 +2,10 @@
 // If you want to support my work, you can subscribe to my youtube channel: https://bit.ly/3Qyv8pp
 // I do a lot of interesting things in my free time, so you might find something of your interest or we can exchange ideas and knowledge
 
-// Libraries
+// Libraries, I also put them on github
 #include "BluetoothSerial.h"
-#include <ArduinoJson.h>
-#include <ThreeWire.h>  
+#include <ArduinoJson.h> 
+#include <ThreeWire.h> 
 #include <RtcDS1302.h>
 #include <EEPROM.h>
 
