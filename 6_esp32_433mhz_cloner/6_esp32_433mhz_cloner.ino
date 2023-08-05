@@ -113,7 +113,7 @@ void decodeRfSignals() { // Decodes the 433/315 signals received by the module, 
   }
 }
 
-void checkLedState() {
+void checkLedState() { // Checks whether the led should blink
   unsigned long currentMillisLed = millis();  
   if (blinkLed) {
     if ((unsigned long)(currentMillisLed - previousMillisLed) >= 100) {
