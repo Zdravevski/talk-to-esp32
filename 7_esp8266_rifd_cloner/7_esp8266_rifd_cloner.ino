@@ -166,6 +166,7 @@ void sendGoodConnectionFlag() { // sends a good connection flag, so the app know
 void receiveBtData () { // determines which operation needs to be executed
   if (Serial.available()) {
     String incomingString = Serial.readString();
+    Serial.println(incomingString);
     if (incomingString == "refresh data") {
       sendCurrentRfidData();
     } else {
