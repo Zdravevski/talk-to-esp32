@@ -1,3 +1,7 @@
+// The script is written by Slavko Zdravevski
+// If you want to support my work, you can subscribe to my youtube channel: https://bit.ly/3FG9hpK
+// I do a lot of interesting things in my free time, so you might find something of your interest or we can exchange ideas and knowledge
+
 // Libraries
 #include <Arduino.h>
 #include "PinDefinitionsAndMore.h" // defines macros for input and output pin etc.
@@ -107,21 +111,26 @@ void receiveBtData() { // determines which operation needs to be executed
 void sendCurrentIRData() { // sends IR data, chucked into groups, because sometimes the Bluetooth communication fails if we try to send big commands
   String currentBtData;
   int currentDataCnt = 0;
-
-  for (int i=0; i<storedIRData.rawCodeLength; i++) {
-    currentDataCnt++;
-    
-    if (i == storedIRData.rawCodeLength-1) {
-      currentBtData += ((String((int)storedIRData.rawCode[i]))+String('|'));
-      Serial.println(currentBtData);
-    } else if (currentDataCnt <= 5) {
-      currentBtData += ((String((int)storedIRData.rawCode[i]))+String(','));
-    } else {
-      currentBtData += ((String((int)storedIRData.rawCode[i]))+String(','));
-      Serial.println(currentBtData);
-      currentBtData = "";
-      currentDataCnt = 0;
-      delay(100);
+  int currentRawCodeLength = storedIRData.rawCodeLength;
+  
+  if (currentRawCodeLength == 0) {
+    Serial.println("empty memory");
+  } else {
+    for (int i=0; i<storedIRData.rawCodeLength; i++) {
+      currentDataCnt++;
+      
+      if (i == storedIRData.rawCodeLength-1) {
+        currentBtData += ((String((int)storedIRData.rawCode[i]))+String('|'));
+        Serial.println(currentBtData);
+      } else if (currentDataCnt <= 5) {
+        currentBtData += ((String((int)storedIRData.rawCode[i]))+String(','));
+      } else {
+        currentBtData += ((String((int)storedIRData.rawCode[i]))+String(','));
+        Serial.println(currentBtData);
+        currentBtData = "";
+        currentDataCnt = 0;
+        delay(100);
+      }
     }
   }
 }
